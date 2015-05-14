@@ -195,7 +195,7 @@
                 "setting-address-content":{
                   url:"html/setting/address/content.html",
                   frame:{
-                     rect:{x:0, y:50, w:'auto', h:api.winHeight - 50},
+                     rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
                   }
                 },
                 "setting-password":{
