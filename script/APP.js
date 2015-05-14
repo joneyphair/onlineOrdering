@@ -172,7 +172,13 @@
                   }
                 },
                 "setting-password":{
-                  url:"html/setting/password/index.html"
+                  url:"html/setting/password/layout.html"
+                },
+                "setting-password-content":{
+                  url:"html/setting/password/content.html",
+                  frame:{
+                     rect:{x:0, y:50, w:'auto', h:api.winHeight - 50},
+                  }
                 },
                 "address":{
                   url:"html/personal/address/index.html",
