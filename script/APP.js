@@ -241,6 +241,28 @@
     *=========================================
     */
     Helper = {};
+    //debug
+    Helper.debug = function(data){
+        var str = '';
+        switch(typeof data){
+            case 'object':{
+              str = JSON.stringify(data);
+            }
+            break;
+            case 'string':{
+               str = data ;
+            }
+            break;
+            default:{
+               str = data;
+            }
+        }
+        alert(str);
+    }
+    //成功提示
+    Helper.success = function(msg){
+        alert(msg);
+    }
     //错误提示
     Helper.error = function(msg){
         alert(msg);
@@ -1057,13 +1079,7 @@ Model.Cart.prototype.statistics = function(){
       //遍历数据
       var tpl = '';
       for(var i = 0;i<data.length;i++){
-          tpl += '<li class="js-set-default-address" data-id="'+data[i]['id']+
-                      ' data-username="'+data[i]['username']+'"'+
-                       ' data-useerId="'+data[i]['userId']+'"'+
-                       ' data-province="'+data[i]['province']+'"'+
-                       ' data-address="'+data[i]['address']+'"'+
-                        ' data-telepbone="'+data[i]['telephone']+'"'+
-                      'data-city="'+data[i]['city']+'">'+
+          tpl += '<li >'+
                      '<label for="username">'+data[i]['username']+'</label>'+
                     '<label for="telephone">'+data[i]['telephone']+'</label>'+
                    '<p>'+
@@ -1071,6 +1087,15 @@ Model.Cart.prototype.statistics = function(){
                       '<span class="city">'+data[i]['city']+'</span>'+
                       '<span class="address">'+data[i]['address']+'</span>'+
                  '</p>'+
+                 '<div class="btn-group">'+
+                      '<span class="js-set-default-address" data-id="'+data[i]['id']+'"'+
+                      ' data-username="'+data[i]['username']+'"'+
+                       ' data-user-id="'+data[i]['userId']+'"'+
+                       ' data-province="'+data[i]['province']+'"'+
+                       ' data-address="'+data[i]['address']+'"'+
+                        ' data-telephone="'+data[i]['telephone']+'"'+
+                      'data-city="'+data[i]['city']+'">'+'默认</span>'+
+                '</div>'+
           '</li>';
       }
 
@@ -1300,8 +1325,9 @@ Model.Cart.prototype.statistics = function(){
     }
     //设置默认地址
     Controller.Address.prototype.setDefault = function(data){
-         window.localStorage.setItem(JSON.stringify(data));
-         return true;
+         window.localStorage.setItem('address',JSON.stringify(data));
+         Helper.success("设置成功！");
+         Helper.back();
     }
     //获取用户默认地址
     Controller.Address.prototype.getDefault = function(){
@@ -1331,9 +1357,10 @@ Model.Cart.prototype.statistics = function(){
         var data = this.getDefault();
         if(data){
             //更改城市
+            ele.find('.username').text(data['username']);
             ele.find('.province').text(data['province']);
+             ele.find('.city').text(data['city']);
             ele.find('.address').text(data['address']);
-            ele.find('.city').text(data['city']);
             ele.find('.telephone').text(data['telephone']);
 
             //隐藏错误提示
@@ -1667,11 +1694,17 @@ Model.Cart.prototype.statistics = function(){
                   event.preventDefault();
                   //构造数据
                   var data = {};
+                      data.id = $(this).data('id');
+                      data.city = $(this).data('city');
+                      data.province = $(this).data('province');
+                      data.telephone = $(this).data('telephone');
                       data.username = $(this).data('username');
-                      data.userId = $(this).data('userId');
-                      alert(JSON.stringify(data));
+                      data.userId = $(this).data('user-id');
+                      data.address = $(this).data('address');
+                  //设置成默认地址
+                  var  AddressController = new Controller.Address();
+                      AddressController.setDefault(data);
         
-  
           });
 
           

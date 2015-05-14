@@ -60,11 +60,18 @@ html,body{
 }
 .g-main .m-harvest-address .default {
 	padding:5px 10px;
+	position: absolute;
 }
 
 .g-main .m-harvest-address .default .btn {
 	 color:red;
+	 position: absolute;
+	 border-left:1px solid #f6f6f7;
 	 padding:5px 0px;
+	 height:100px;
+	 right:0;
+	 top:0;
+	 bottom:0;
 }
 
 .g-main .nav ul.item {

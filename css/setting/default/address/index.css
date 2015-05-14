@@ -35,8 +35,9 @@ body{
 .g-main .m-address .content li {
 	border-bottom: 1px solid #ddd;
 	overflow: hidden;
-	margin-bottom:10px;
 	background-color:#fff;
+	position: relative;
+	height:90px;
 }
 .g-main .m-address .content li label {
 	height:30px;
@@ -57,7 +58,18 @@ body{
 	 padding:0 5px;
 	 display:inline-block;
 }
-
+.g-main .m-address .content li .btn-group {
+	  position: absolute;
+	  top:0;
+	  right:0;
+	  bottom:0;
+	  padding:0 15px;
+	  color:#ddd;
+	  line-height: 90px;
+	  vertical-align: middle;
+	  text-align: center;
+	  border-left:1px solid #f6f6f7;
+}
 
  .g-footer {
 	height:50px;
@@ -66,20 +78,21 @@ body{
 	right:0;
 	bottom: 0;
 	background-color:red;
-	border-top:1px solid #ddd;
+	border-left:1px solid #f6f6f7;
 }
 .g-footer .m-nav {
 	list-style-type: none;
+	margin:0;
+	padding:0;
 }
 .g-footer .m-nav li {
-	padding:10px 20px;
+
 }
 .g-footer .m-nav li a {
 	display: block;
-	background-color:red;
 	color:#fff;
-	height:30px;
-	padding:8px 10px;
+	height:50px;
+	line-height: 50px;
 	text-align: center;
 	vertical-align: middle;
 } 
