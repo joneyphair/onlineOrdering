@@ -1,27 +1,3 @@
-body{
-	padding:0;
-	margin:0;
-	width:100%;
-}
-.g-header .m-topbar {
-	height:50px;
-	background-color:red;
-	line-height: 50px;
-	color:#fff;
-	padding:0 10px;
-}
-.g-header .m-topbar .title {
-	text-align: center;
-	vertical-align: middle;
-	font-weight: bold;
-	display: inline-block;
-	width:100%;
-}
-.g-header .m-topbar .iconfont {
-	color:#fff;
-	position: absolute;
-	left:10px;
-}
 .g-main {
 	margin-top:10px;
 }
@@ -70,29 +46,3 @@ body{
 	  text-align: center;
 	  border-left:1px solid #f6f6f7;
 }
-
- .g-footer {
-	height:50px;
-	position: fixed;
-	left:0;
-	right:0;
-	bottom: 0;
-	background-color:red;
-	border-left:1px solid #f6f6f7;
-}
-.g-footer .m-nav {
-	list-style-type: none;
-	margin:0;
-	padding:0;
-}
-.g-footer .m-nav li {
-
-}
-.g-footer .m-nav li a {
-	display: block;
-	color:#fff;
-	height:50px;
-	line-height: 50px;
-	text-align: center;
-	vertical-align: middle;
-} 

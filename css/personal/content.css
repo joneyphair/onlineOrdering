@@ -12,7 +12,6 @@ body{
 }
 .m-personal .user-status .default .username {
 	 display: block;
-	 height:30px;
 	 line-height: 30px;
 	 text-decoration: none;
 	 text-align: center;
@@ -20,7 +19,7 @@ body{
 	 font-weight: bold;
 	 color:#fff;
 	 padding:6px 0;
-	 margin-top:20px;
+	 padding-top:20px;
 }
 .m-personal .user-status .default .introduce {
 	display: block;

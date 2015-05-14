@@ -104,7 +104,7 @@
                  "order-desc-content":{
                   url:"html/order/desc/content.html",
                   frame:{
-                      rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
+                      rect:{x:0, y:50, w:'auto', h:api.winHeight - 50},
                   }
                 },
                 "order-comment":{
@@ -176,6 +176,21 @@
                      rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
                   }
                 },
+                "setting-address":{
+                  url:"html/setting/address/layout.html",
+                  win:{
+                    bgColor: '#fff',
+                    vScrollBarEnabled:false,
+                    hScrollBarEnabled:false,
+                      bounces: false,
+                  }
+                },
+                "setting-address-content":{
+                  url:"html/setting/address/content.html",
+                  frame:{
+                     rect:{x:0, y:50, w:'auto', h:api.winHeight - 50},
+                  }
+                },
                 "setting-password":{
                   url:"html/setting/password/layout.html"
                 },
@@ -236,9 +251,6 @@
                 },
                 "personal-update":{
                   url:"html/personal/update/index.html"
-                },
-                 "setting-default-address":{
-                  url:"html/setting/default/address/index.html"
                 }
         },
         setFrameDefaultAttribute:function(){
@@ -1763,9 +1775,9 @@ Model.Cart.prototype.statistics = function(){
         *============================================================
         */
         //打开更改默认收货人信息
-         $('body').delegate('.js-open-setting-default-address','click',function(event){
+         $('body').delegate('.js-open-setting-address','click',function(event){
                 event.preventDefault();
-             Helper.openWin('setting-default-address');
+             Helper.openWin('setting-address');
         });
          //打开新的frame
          $('.js-openNewFrame').bind('click',function(event){
@@ -2138,7 +2150,7 @@ Model.Cart.prototype.statistics = function(){
         //判断当前是哪一页
         var currentPage = $('body').data('page');
         switch(currentPage){
-          case 'setting-default-address':{
+          case 'setting-address-content':{
             //显示用户所有收货人地址信息
             var addressListEle = $('#address-list');
             if(addressListEle){

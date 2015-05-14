@@ -3,21 +3,32 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
 	<link rel="stylesheet" type="text/css" href="../../../css/lib/icon/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="../../../css/setting/password/content.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/setting/address/content.css"/>
     <title>导航页面</title>
 </head>
-<body>
+<body data-page="setting-address-content">
 
 
-	<div class="g-main" id="main">
-		<from id="set-passwrod-form" class="set-password-form">
-			 <input type="text" name="password" placeholder="旧密码">
-			  <input type="text" name="new-password" placeholder="新密码">
-			   <input type="text" name="confirm-password" placeholder="确认新密码">
-			   <button class="btn js-set-password" type="button">修改</button>
-		</from>
+	<div class="g-main">
+			<div class="m-address">
+				<ul class="content" id="address-list">
+
+					<li class="js-select-default-address">
+						<label for="username">张屈</label>
+						<label for="telephone">18674761885</label>
+						<p>
+						    <span class="province"></span>
+						    <span class="city"></span>
+						    <span class="address"></span>
+						</p>
+						<div class="btn-group">
+							<span class="js-set-default-address">设置默认</span>
+						</div>
+					</li>
+				</ul>
+		</div>
 	</div>
 
 
