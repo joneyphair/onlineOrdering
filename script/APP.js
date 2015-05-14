@@ -107,11 +107,18 @@
                       rect:{x:0, y:50, w:'auto', h:api.winHeight - 50},
                   }
                 },
+
                 "order-comment":{
-                  url:"html/order/comment/index.html"
+                  url:"html/order/comment/layout.html",
+                  win:{
+                      bounces: false,
+                  }
                 },
-                "order-comment-add":{
-                  url:"html/order/comment/add/index.html"
+                "order-comment-content":{
+                  url:"html/order/comment/content.html",
+                  frame:{
+                      rect:{x:0, y:50, w:'auto', h:api.winHeight - 50},
+                  }
                 },
                 "order-list":{
                   url:"html/order/list/index.html",
@@ -1321,6 +1328,7 @@ Model.Cart.prototype.statistics = function(){
          CartModel.clear();
 
         alert("您的订单已经收到，我们马上通知商家，请及时查看订单状态");
+
 
         api.sendEvent({
             name: 'orderSuccess'
