@@ -81,15 +81,20 @@
                     url:"html/cart/list/index.html",
                     frame:{
                        rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
-
                     }
                 },
-                "order":{
-                  url:"html/order/index.html",
+                "order-confirm":{
+                  url:"html/order/confirm/layout.html",
                   win:{
                       bounces: false,
                   }
                 },
+               "order-confirm-content":{
+                url:"html/order/confirm/content.html",
+                frame:{
+                    rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
+                }
+              },
                 "order-desc":{
                   url:"html/order/desc/layout.html",
                   win:{
@@ -1966,7 +1971,7 @@ Model.Cart.prototype.statistics = function(){
 
         })
         //从购物车里，开始下单
-        $('body').delegate('.js-open-order','click',function(event){
+        $('body').delegate('.js-open-order-confirm','click',function(event){
                  event.preventDefault();
                  //判断购物车里是否有数据
                  var CartModel = new Model.Cart();
@@ -1975,7 +1980,7 @@ Model.Cart.prototype.statistics = function(){
                     alert('亲，您的购物车空空如也，马上购物吧!');
                     return false;
                  }
-                Helper.openWin('order');
+                Helper.openWin('order-confirm');
           });
   
 
@@ -2143,7 +2148,7 @@ Model.Cart.prototype.statistics = function(){
            
           }
           break;
-          case 'order': {
+          case 'order-confirm-content': {
             //body绑定滚动条在顶部的事件
             $(window).scroll(function(){
                 var y =  $(window).scrollTop();
