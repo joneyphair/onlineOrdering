@@ -12,14 +12,18 @@ body{
 }
 .m-personal .user-status .default .username {
 	 display: block;
-	 height:50px;
-	 line-height: 50px;
+	 height:30px;
+	 line-height: 30px;
 	 text-decoration: none;
 	 text-align: center;
 	 font-size:18px;
 	 font-weight: bold;
 	 color:#fff;
-	 padding:10px 0;
+	 padding:6px 0;
+}
+.m-personal .user-status .default .introduce {
+	display: block;
+	text-align: center;
 }
 .m-personal .user-status .default .logout-btn {
 	 display:block;

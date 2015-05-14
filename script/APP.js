@@ -52,9 +52,11 @@
                   win:{
                     bgColor: '#fff',
                     vScrollBarEnabled:false,
-                    hScrollBarEnabled:false
+                    hScrollBarEnabled:false,
+                    bounces: false,
                   }
                 },
+                 
                 "menu":{
                   url:"html/menu/index.html",
                   win:{
@@ -70,7 +72,10 @@
                   url:"html/user/register/index.html"
                 },
                 "cart":{
-                  url:"html/cart/index.html"
+                  url:"html/cart/index.html",
+                  win:{
+                        bounces: false,
+                  }
                 },
                 "cart-list":{
                     url:"html/cart/list/index.html",
@@ -80,7 +85,10 @@
                     }
                 },
                 "order":{
-                  url:"html/order/index.html"
+                  url:"html/order/index.html",
+                  win:{
+                      bounces: false,
+                  }
                 },
                 "order-comment":{
                   url:"html/order/comment/index.html"
@@ -100,7 +108,7 @@
                 "shop":{
                   url:"html/shop/index.html",
                   win:{
-                    pageBounce:'false',
+                      bounces: false,
                   },
                   frame:{
                      rect:{x:0, y:0, w:api.winWidth, h:api.winHeight},
@@ -135,6 +143,21 @@
                 },
                 "personal-content":{
                   url:"html/personal/content.html",
+                  frame:{
+                     rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
+                  }
+                },
+                "about-home":{
+                  url:"html/about/home/layout.html",
+                  win:{
+                    bgColor: '#fff',
+                    vScrollBarEnabled:false,
+                    hScrollBarEnabled:false,
+                      bounces: false,
+                  }
+                },
+                "about-home-content":{
+                  url:"html/about/home/content.html",
                   frame:{
                      rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
                   }
@@ -236,11 +259,13 @@
           });
         }
       };
+
     /*========================================
     *Helper
     *=========================================
     */
     Helper = {};
+
     //debug
     Helper.debug = function(data){
         var str = '';
@@ -441,8 +466,7 @@
       var totalPrice = ele.data('total-price'),
           totalCount = ele.data('total-count');
 
-        ele.find('.total-price').first().html('');
-        ele.find('.total-price').first().append('总额：￥'+totalPrice);
+        ele.find('.total-price').first().html('').append('总额：￥'+totalPrice);
         ele.find('.total-count').first().html(totalCount);
     };
 
@@ -1246,7 +1270,8 @@ Model.Cart.prototype.statistics = function(){
           "userId":uId,
           "addressId":addressData['id'],
           "address":addressData['province'] + addressData['city'] + addressData['address'],
-          "telephone":addressData['telephone']
+          "telephone":addressData['telephone'],
+          "username":addressData['username']
         };
         var OrderModel = new Model.Order();
         var resOrderData = OrderModel.create(orderData);
@@ -1291,7 +1316,7 @@ Model.Cart.prototype.statistics = function(){
            detailInfo = OrderDetailModel.get(orderId);*/
             var date = new Date(orderData[i]['createdAt']);
             var time = date.getTime();
-      
+            
 
             tpl +='<div class="item js-open-order-item" data-id="'+orderData[i]['id']+'">'+
                        '<div class="header">'+Helper.formatDate(time)+'</div>'+
@@ -1461,6 +1486,7 @@ Model.Cart.prototype.statistics = function(){
           ele.find('.error').hide();
           //设置用户名称
          ele.find('.username').text(userInfo.username);
+         ele.find('.introduce').text(userInfo.introduce);
          ele.find('.default').show();
        }else {
          ele.find('.error').show();

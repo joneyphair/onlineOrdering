@@ -2,19 +2,12 @@
 	margin:0;
 	padding:0;
 }
-ul,li,label,p,div,form{
+body{
 	padding:0;
 	margin:0;
 }
-html,body{
-	height:100%;
-	width:100%;
-	overflow: hidden;
-	position: fixed;
-}
 .g-header{
-	width:100%;
-	position: fixed;
+
 }
 .g-header .m-topbar {
 	height:50px;
@@ -29,7 +22,6 @@ html,body{
 	font-weight: bold;
 	display: inline-block;
 	width:100%;
-	color:#fff;
 }
 .g-header .m-topbar .iconfont {
 	color:#fff;
@@ -38,17 +30,14 @@ html,body{
 }
 
 .g-footer {
-	position: fixed;
-	bottom: 0;
-	left:0;
-	right:0;
+	 height:50px;
+	 position: fixed;
+	 bottom: 0;
+	 left:0;
+	 right:0;
+	 background-color:red;
+	 color:#fff;
+	 line-height: 50px;
+	 text-align: center;
 }
-.g-footer .btn a {
-	height:50px;
-	line-height: 50px;
-	background-color:red;
-	text-align: center;
-	color:#fff;
-	text-decoration: none;
-	display:block;
-}
+
