@@ -90,11 +90,20 @@
                       bounces: false,
                   }
                 },
+                "order-desc":{
+                  url:"html/order/desc/layout.html",
+                  win:{
+                      bounces: false,
+                  }
+                },
+                 "order-desc-content":{
+                  url:"html/order/desc/content.html",
+                  frame:{
+                      rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
+                  }
+                },
                 "order-comment":{
                   url:"html/order/comment/index.html"
-                },
-                "order-item":{
-                  url:"html/order/item.html"
                 },
                 "order-comment-add":{
                   url:"html/order/comment/add/index.html"
@@ -1202,7 +1211,7 @@ Model.Cart.prototype.statistics = function(){
         order['currentId'] = id;
        window.localStorage.setItem('order',JSON.stringify(order));
 
-       Helper.openWin('order-item');
+       Helper.openWin('order-desc');
 
 
 
@@ -2163,7 +2172,7 @@ Model.Cart.prototype.statistics = function(){
                //######
           }
           break;
-          case 'order-item':{
+          case 'order-desc-content':{
                var orderEle = $('#order-item-content');
                if(orderEle){
                   //订单Controller
