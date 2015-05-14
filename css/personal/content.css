@@ -1,0 +1,84 @@
+body{
+	padding:0;
+	margin:0;
+}
+
+.m-personal .user-status .default {
+  height:150px;
+  position: relative;
+  display: none;
+  background-color: rgb(241, 132, 155);
+  color:#fff;
+}
+.m-personal .user-status .default .username {
+	 display: block;
+	 height:50px;
+	 line-height: 50px;
+	 text-decoration: none;
+	 text-align: center;
+	 font-size:18px;
+	 font-weight: bold;
+	 color:#fff;
+	 padding:10px 0;
+}
+.m-personal .user-status .default .logout-btn {
+	 display:block;
+	 margin:5px auto;
+	 height:30px;
+	 width:40px;
+	 padding:0 20px;
+	 line-height: 30px;
+	 background-color:red;
+	 color:#fff;
+	 text-decoration: none;
+	 position: relative;
+	 border-radius:2px/2px;
+}
+.m-personal .user-status .error{
+	padding:10px 10px;
+	text-align: center;
+}
+.m-personal .user-status .error .user-login-btn {
+	 padding:0 15px;
+	 border:none;
+	 background-color: red;
+	 height:30px;
+	 line-height: 30px;
+	 text-align: center;
+	 color:#fff;
+}
+.m-personal .nav ul.item {
+	background-color:#fff;
+	list-style-type: none;
+	padding:0px;
+	margin:0px;
+	line-height: 2;
+	margin-bottom:10px;
+}
+.m-personal .nav ul.item li{
+	border-bottom:1px solid  #f6f6f7;
+	line-height: 50px;
+	height:50px;
+	position: relative;
+	padding:0 15px;
+}
+.m-personal .nav ul.item li:last-of-type{
+	border:none;
+}
+.m-personal .nav ul.item li  {
+	text-decoration: none;
+	color:#000;
+	font-size:15px;
+	display: block;
+}
+.m-personal .nav ul.item li  i.iconfont{
+  color:#ddd;
+  height:30px;
+  width:30px;
+  border-radius: 50px/50px;
+  display:inline-block;
+  font-size:20px;
+  padding:0 8px;
+}
+
+

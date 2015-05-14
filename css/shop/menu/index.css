@@ -1,0 +1,150 @@
+body{
+	padding:0;
+	margin:0;
+	width:100%;
+}
+*{
+	margin:0;
+	padding:0;
+}
+.g-header {
+	overflow: hidden;
+	background-color:red;
+}
+.g-header .m-notice {
+	height:30px;
+	overflow: hidden;
+	background-color:#ddd;
+	position: fixed;
+	z-index: 9999;
+	display:block;
+	line-height:30px;
+	width:100%;
+}
+.g-main {
+	position: relative;
+	z-index: 0;
+}
+.g-main .m-menu {
+	
+}
+.g-main .m-menu  {
+	position:relative;
+	right:0;
+	top:0;
+	bottom:0;
+
+}
+.g-main .m-menu .list {
+	list-style-type:none;
+	border-top:1px solid #f6f6f7;
+}
+.g-main .m-menu ul.list  li{
+	height:50px;
+	padding:5px 20px;
+	position: relative;
+	border-bottom: 1px solid #f6f6f7;
+	
+}
+.g-main .m-menu ul.list  li:hover{
+	background-color: #f6f6f7;
+}
+.g-main .m-menu ul.list .name {
+	padding:0 10px;
+	height:30px;
+	line-height: 30px;
+	display:block;
+}
+.g-main .m-menu ul.list .price {
+	display:block;
+	color:red;
+	height:20px;
+	line-height: 20px;
+	padding:0 10px;
+}
+.g-main .m-menu ul.list  .side{
+	position: absolute;
+	top:0;
+	right:0;
+	bottom: 0;
+}
+.g-main .m-menu  .side .ui-btn,
+.g-main .m-menu .side .count {
+	float:left;
+	line-height: 60px;
+	text-align: center;
+	padding:0 5px;
+	vertical-align: middle;
+}
+.g-main .m-menu  .side .price {
+	padding:0 10px;
+}
+.g-main .m-menu  .side  .count {
+	padding:0 10px;
+}
+.g-main .m-menu  .side .ui-btn {
+	color:#ddd;
+	padding:0 15px;
+	border-left:1px solid #f6f6f7;
+}
+
+/*店铺底部*/
+.g-main .m-menu .m-panel.shop-desc .footer {
+	 height:50px;
+	 background-color:#fff;
+	 border-bottom: 1px solid #f6f6f7;
+}
+
+/* 店铺购物车 */
+.m-cart {
+	height:50px;
+	position: fixed;
+	left:10px;
+	bottom: 10px;
+	background-color: transparent;
+	border-radius:50px 0 0 50px;
+}
+.m-cart .icon-gouwuchekong {
+	height:50px;
+	width: 50px;
+	position: relative;
+	display:inline-block;
+	left:0;
+	top:0;
+	bottom: 0;
+	font-size:25px;
+	line-height: 50px;
+	text-align: center;
+	color:#fff;
+	border-radius:50px/50px;
+	background-color:green;
+	z-index: 999;
+	float:left;
+}
+.m-cart .total-count {
+	position: absolute;
+	left:25px;
+	top:-3px;
+	display:block;
+	background-color:red;
+	z-index: 99999;
+	color:#fff;
+	border-radius:50px/50px;
+	padding:2px;
+}
+.m-cart .total-price {
+	height:30px;
+	float:left;
+	margin-left:-10px;
+	margin-top:10px;
+	padding:0 15px;
+	line-height: 30px;
+	color:#fff;
+	font-size:13px;
+	border-radius:0 50px 50px 0;
+	background-color: red;
+	position: relative;
+}
+
+/*页面底部*/
+

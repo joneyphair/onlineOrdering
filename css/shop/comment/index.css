@@ -1,0 +1,49 @@
+*{
+	margin:0;
+	padding:0;
+}
+ul,li,label,p,div,form{
+	padding:0;
+	margin:0;
+}
+body{
+	padding:0;
+	margin:0;
+	height:100%;
+	width:100%;
+	overflow: hidden;
+}
+/* 店铺评论 */
+.g-main {
+
+}
+.g-main .m-comment {
+}
+.g-main .m-comment {
+	list-style-type:none;
+}
+.g-main .m-comment li{
+	border-bottom:1px solid #f6f6f7;
+	padding:0 20px;
+}
+.g-main .m-comment .header {
+	height:30px;
+	padding:10px 10px;
+	padding-bottom: 0;
+}
+.g-main .m-comment .header .nickname {
+	float:left;
+}
+.g-main .m-comment .header .time {
+	float:right;
+}
+.g-main .m-comment .body {
+	line-height: 1.5;
+	padding:0 10px;
+}
+.g-main .m-comment .footer {
+	color:red;
+	padding:5px 10px;
+}
+
+

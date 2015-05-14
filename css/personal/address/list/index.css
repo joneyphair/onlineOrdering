@@ -1,0 +1,27 @@
+
+.g-main .m-address .content{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+.g-main .m-address .content li {
+	border-bottom: 1px solid #ddd;
+	overflow: hidden;
+	margin-bottom:10px;
+	background-color:#fff;
+}
+.g-main .m-address .content li label {
+	height:30px;
+	line-height:2;
+	vertical-align: middle;
+	display:block;
+	padding:0 10px;
+}
+.g-main .m-address .content li p {
+	margin:0;
+	height:50px;
+	line-height:2;
+	padding:0 10px;
+	vertical-align: middle;
+	text-align: left;
+}

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>底部导航</title>
+    <link rel="stylesheet" type="text/css" href="css/lib/icon/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+  
+</head>
+<body id="content">
+    <header class="g-header" id="header">
+        <div class="m-topbar">
+            <i class="js-openNewFrame iconfont icon-liebiao pull-left" data-name="menu" ></i>
+             <form class="m-search">
+             	<input class="value" name="value"/>
+             	<button type="submit" class="btn"><i class="iconfont icon-sousuo"></i></button>
+            </form>
+            	<i class="js-openNewFrame iconfont icon-gouwuchekong pull-right" data-name="cart"></i>
+        </div>
+    </header>
+
+
+    <div id="footer" class="footer">
+        <ul class="m-nav">
+            <li  class="js-openNewFrame" data-name="shop" >
+                 <i class="iconfont icon-dianpu"></i>商家
+            </li>
+            <li  class="js-openNewFrame" data-name="order">
+                <i class="iconfont icon-duihuakuang"></i>订单
+            </li>
+            <li  class="js-openNewFrame" data-name="personal">
+                <i class="iconfont icon-guanliyuan"></i>个人中心
+            </li>
+        </ul>
+    </div>
+
+<script type="text/javascript" src="./script/api.js"></script>
+<script type="text/javascript" src="./script/libs/zepto/zepto.js"></script>
+<script type="text/javascript" src="./script/common/function.js"></script>
+</body>
+</html>

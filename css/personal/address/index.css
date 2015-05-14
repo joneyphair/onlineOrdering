@@ -1,0 +1,66 @@
+body{
+	padding:0;
+	margin:0;
+	width:100%;
+}
+.g-header .m-topbar {
+	height:50px;
+	background-color:red;
+	line-height: 50px;
+	color:#fff;
+	padding:0 10px;
+}
+.g-header .m-topbar .title {
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	display: inline-block;
+	width:100%;
+}
+.g-header .m-topbar .iconfont {
+	color:#fff;
+	position: absolute;
+	left:10px;
+}
+.g-main {
+	margin-top:10px;
+}
+
+.g-main .address-form input{
+	 display: block;
+	 height:40px;
+	 line-height: 40px;
+	 text-align: left;
+	 text-indent: 10px;
+	 color:#ddd;
+	 font-size:18px;
+	 border:1px solid #f6f6f7;
+	 width:100%;
+	 margin-bottom:15px;
+	 outline: none;
+
+}
+
+
+.g-footer {
+	position: fixed;
+	left:0;
+	bottom: 0;
+	right:0;
+	padding:5px 20px;
+	height:50px;
+}
+.g-footer  .add-address {
+	background-color: #ddd;
+	
+}
+.g-footer  .add-address  .btn {
+	 border:1px solid red;
+	 background-color:red;
+	 display:block;
+	 padding:10px;
+	 color:#fff;
+	 text-align: center;
+	 border-radius:5px/5px;
+	
+}

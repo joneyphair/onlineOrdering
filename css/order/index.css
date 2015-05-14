@@ -1,0 +1,137 @@
+*{
+	margin:0;
+	padding:0;
+}
+ul,li,label,p,div,form{
+	padding:0;
+	margin:0;
+}
+html,body{
+	height:100%;
+	width:100%;
+	overflow: hidden;
+	position: fixed;
+}
+.hiden {
+	display: none;
+}
+.g-header{
+	width:100%;
+}
+.g-header .m-topbar {
+	height:50px;
+	background-color:red;
+	line-height: 50px;
+	color:#fff;
+	padding:0 10px;
+}
+.g-header .m-topbar .title {
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	display: inline-block;
+	width:100%;
+}
+.g-header .m-topbar .iconfont {
+	color:#fff;
+	position: absolute;
+	left:10px;
+}
+
+.g-main .m-harvest-address {
+	height:100px;
+	margin:5px;
+	padding:10px 10px;
+	border:2px dashed #ddd;
+	vertical-align: middle;
+}
+.g-main .m-harvest-address .error{
+	text-align: center;
+}
+.g-main .m-harvest-address .error .ui-button{
+	padding:0 15px;
+	height:30px;
+	display:inline-block;
+	color:#fff;
+	text-decoration: none;
+	background-color:red;
+	line-height: 30px;
+	font-size:13px;
+}
+.g-main .m-harvest-address .default {
+	padding:5px 10px;
+}
+
+.g-main .m-harvest-address .default .btn {
+	 color:red;
+	 padding:5px 0px;
+}
+
+.g-main .nav ul.item {
+	background-color:#fff;
+	list-style-type: none;
+	padding:0px;
+	margin:0px;
+	line-height: 2;
+	margin-bottom:10px;
+}
+.g-main  .nav ul.item li{
+	border-bottom:1px solid  #f6f6f7;
+	line-height: 50px;
+	height:50px;
+	position: relative;
+	padding:0 15px;
+}
+.g-main  .nav ul.item li:last-of-type{
+	border:none;
+}
+.g-main  .nav ul.item li  {
+	text-decoration: none;
+	color:#000;
+	font-size:15px;
+	display: block;
+}
+.g-main  .nav ul.item li  i.iconfont{
+  color:#297CBB;
+  display:inline-block;
+  font-size:20px;
+  padding:0 8px;
+}
+
+ .g-footer {
+	height:50px;
+	position: fixed;
+	left:0;
+	right:0;
+	bottom: 0;
+	background-color:red;
+	border-top:1px solid #ddd;
+}
+.g-footer .m-nav {
+	list-style-type: none;
+}
+.g-footer .m-nav li {
+	padding:10px 20px;
+}
+.g-footer .m-nav li a {
+	display: block;
+	background-color:red;
+	color:#fff;
+	height:30px;
+	padding:8px 10px;
+	text-align: center;
+	vertical-align: middle;
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+*{
+	margin:0;
+	padding:0;
+}
+ul,li,label,p,div,form{
+	padding:0;
+	margin:0;
+}
+html,body{
+	height:100%;
+	width:100%;
+	overflow: hidden;
+	position: fixed;
+}
+.hiden {
+	display: none;
+}
+.g-header{
+	width:100%;
+}
+.g-header .m-topbar {
+	height:50px;
+	background-color:red;
+	line-height: 50px;
+	color:#fff;
+	padding:0 10px;
+}
+.g-header .m-topbar .title {
+	text-align: center;
+	vertical-align: middle;
+	font-weight: bold;
+	display: inline-block;
+	width:100%;
+}
+.g-header .m-topbar .iconfont {
+	color:#fff;
+	position: absolute;
+	left:10px;
+}
+
+
+.g-main .add-comment {
+	padding:10px;
+}
+
+.g-main .add-comment .comment-content {
+	 height:200px;
+	 border:1px solid #f6f6f7;
+	 background-color:#ddd;
+	 font-size:16px;
+	 width:100%;
+	 display:block;
+
+
+}
+.g-main .add-comment  .btn {
+	 height:30px;
+	 padding:0px 15px;
+	 line-height: 30px;
+	 border:1px solid #f6f6f7;
+	 margin-top:10px;
+	 background-color:red;
+	 color:#fff;
+	 border-radius:2px/2px;
+}

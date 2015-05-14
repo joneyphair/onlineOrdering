@@ -1,0 +1,41 @@
+body{
+	padding:0;
+	margin:0;
+}
+.m-order {
+	overflow: hidden;
+	height:auto;
+}
+.m-order .item {
+	overflow: hidden;
+	height:auto;
+	padding:0 20px;
+	border-bottom:1px solid #f6f6f7;
+	background-color:transparent;
+}
+.m-order .item .header {
+	height:50px;
+	font-size:24px;
+	line-height: 3;
+}
+.m-order .item .content {
+	height:200px;
+	font-size:18px;
+	line-height:1.7;
+	padding:10px 0;
+	overflow: hidden;
+}
+.m-order  .item .footer{
+	height:50px;
+	padding:6px 0;	
+}
+.m-order  .item .footer .btn-comment {
+	display: block;
+	color:red;
+	text-align: center;
+	line-height: 30px;
+	height:30px;
+	font-size:18px;
+	text-align: left;
+	text-decoration: none;
+}

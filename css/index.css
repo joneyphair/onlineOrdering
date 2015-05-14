@@ -1,0 +1,126 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  border-top:2px solid rgb(246, 144, 80);
+}
+
+.pull-left{
+	float:left;
+}
+.pull-right{
+	float:right;
+}
+
+
+
+#wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#header {
+    top: 0;
+    right: 0;
+    left: 0;
+    font-size:20px;
+    letter-spacing:5px;
+    height: 48px;
+    overflow: hidden;
+    position: fixed;
+    z-index: 9999;
+   background-color: #fff;
+
+}
+#header .m-topbar {
+    -webkit-box-sizing: border-box; /* Safari */
+       -moz-box-sizing: border-box; /* Firefox */
+            box-sizing: border-box;
+    line-height: 50px;
+    text-align: center;
+    color:#ddd;
+    vertical-align:middle;
+    padding:0px 10px;
+}
+#header .m-topbar .m-search{
+	display:inline-block;
+	float:left;
+	width:78%;
+	height:30px;
+	border-radius:20px/20px;
+	overflow:hidden;
+	background-color:#fff;
+	position: relative;
+	margin-top:10px;
+	padding-left:8px;
+}
+#header .m-topbar .m-search .value ,#header .m-topbar .m-search .btn{
+	float:left;
+   display:inline-block;
+}
+#header .m-topbar .m-search .value{
+  width:88%;
+  font-size:15px;
+}
+#header .m-topbar .m-search .value:focus{
+	outline:none;
+	border:none;
+}
+#header .m-topbar .m-search .btn{
+	line-height:30px;
+	color:#297CBB;
+}
+#header .m-topbar .m-search .btn i{
+	vertical-align:middle;
+	text-align:center;
+}
+#main {
+    width: 100%;
+    height: auto;
+    z-index: 0;
+}
+#footer {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    background-color:red;
+    position: fixed;
+    padding:5px 0;
+}
+#footer .m-nav{
+    margin:0;
+    padding:0;
+}
+#footer .m-nav li {
+    display: block;
+    float: left;
+    width: 33.333333%;
+    color:#fff;
+    -webkit-box-sizing: border-box; /* Safari */
+       -moz-box-sizing: border-box; /* Firefox */
+            box-sizing: border-box;
+
+    font-size: 12px;
+
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    text-align: center;
+}
+#footer .m-nav li:last-type-of {
+    border-right: 1px solid #ddd;
+}
+#footer .m-nav li i {
+    display: block;
+    padding-top:3px;
+    color:#fff;
+}
+#footer .m-nav li i.iconfont{
+    font-size:20px;
+}
+#footer .m-nav li.active {
+   
+}
