@@ -198,6 +198,21 @@
                      rect:{x:0, y:50, w:'auto', h:api.winHeight - 100},
                   }
                 },
+                "setting-comment":{
+                  url:"html/setting/comment/layout.html",
+                  win:{
+                    bgColor: '#fff',
+                    vScrollBarEnabled:false,
+                    hScrollBarEnabled:false,
+                      bounces: false,
+                  }
+                },
+                "setting-comment-content":{
+                  url:"html/setting/comment/content.html",
+                  frame:{
+                     rect:{x:0, y:50, w:'auto', h:api.winHeight - 50},
+                  }
+                },
                 "setting-address":{
                   url:"html/setting/address/layout.html",
                   win:{
@@ -516,11 +531,6 @@
     };
     Helper.back = function(){
          api.closeWin();
-         //监听返回事件
-         api.sendEvent({
-             name: 'backEvent'
-         });
-
     }
     //显示购物车状态
     Helper.showCartStatus = function(ele){
@@ -758,6 +768,59 @@
     Model.OrderComment = function(){
 
     }
+    //根据id删除评论
+    Model.OrderComment.prototype.deleteInfoById = function(id){
+          var status = false;
+           $.ajax({
+                  type: 'POST',
+                  url:  Config.HOST+"/mcm/api/orderComment/"+id,
+                  dataType: 'json',
+                  "data": {
+                     "_method": "DELETE"
+                   },
+                  async: false,
+                  "headers": {
+                    "X-APICloud-AppId": Config.ID,
+                    "X-APICloud-AppKey": Config.APPKEY
+                  },
+                  success: function(dt){
+                   status = true;
+                  },
+                  error: function(xhr, type){
+                    status =false;
+                  }
+          });
+        return status;
+    }
+    //根据uId获取所有评论
+    Model.OrderComment.prototype.getInfoByUserId = function(userId){
+        var data = [];
+        var condition = {
+            filter:{
+               where:{
+                 "userId":userId
+               }
+            }
+        };
+         $.ajax({
+                type: 'GET',
+                url:  Config.HOST+"/mcm/api/orderComment",
+                dataType: 'json',
+                data:condition,  
+                async: false,
+                "headers": {
+                  "X-APICloud-AppId": Config.ID,
+                  "X-APICloud-AppKey": Config.APPKEY
+                },
+                success: function(dt){
+                 data = dt;
+                },
+                error: function(xhr, type){
+                 
+                }
+        });
+        return data;
+    }
     //通过店铺id获取店铺评论
     Model.OrderComment.prototype.getInfoByShopId = function(shopId){
         var data = [];
@@ -920,13 +983,14 @@
         //请求数据
          $.ajax({
                 type: 'GET',
-                url:  Config.HOST+"/mcm/api/order/"+id,
+                url:Config.HOST+"/mcm/api/order/"+id,
                 dataType: 'json',
                 async: false,
+                "cache": false,
                 "headers": {
                   "X-APICloud-AppId": Config.ID,
                   "X-APICloud-AppKey": Config.APPKEY,
-                  "Content-Type":"application/json"
+                 
                 },
                 success: function(dt){
                  resData = dt;
@@ -935,6 +999,7 @@
                    resData = {};
                 }
         });
+
 
          return resData;
     }
@@ -1160,6 +1225,28 @@ Model.Cart.prototype.statistics = function(){
       this.condition = condition;
       return this;
   }
+  //获取单个店铺的信息
+  Model.Shop.prototype.getInfoByShopId = function(shopId){
+        var data = {};
+         $.ajax({
+                type: 'GET',
+                url:  Config.HOST+"/mcm/api/shop/"+shopId,
+                dataType: 'json',
+                async: false,
+                "headers": {
+                  "X-APICloud-AppId": Config.ID,
+                  "X-APICloud-AppKey": Config.APPKEY,
+                  "Content-Type":"application/json"
+                },
+                success: function(dt){
+                  data = dt;
+                },
+                error: function(xhr, type){
+          
+                }
+        });
+      return data;
+  }
   Model.Shop.prototype.get = function(){
       var data = [];
        $.ajax({
@@ -1278,6 +1365,40 @@ Model.Cart.prototype.statistics = function(){
     Controller.Setting = function(){
 
     }
+    //根据uId显示用户所有评论
+    Controller.Setting.prototype.showComment = function(ele){
+      var UserController = new Controller.User();
+      //用户已经登录
+      if(!UserController.isLogin()){
+            Helper.error("您还没登录，请登录");
+            return false;
+      }
+      //获取用户uId
+      var UserModel = new Model.User();
+      var uId  = UserModel.getUserId();
+      //获取用户评论信息
+      var OrderCommentModel = new Model.OrderComment();
+      var data = OrderCommentModel.getInfoByUserId(uId);
+      //遍历数据
+      var tpl = '';
+      for(var i = 0;i<data.length;i++){
+          tpl += '<li>'+
+                '<div class="header">'+
+                 '<span class="nickname">'+data[i]['shopName']+'</span>'+
+                  '<span class="time">'+(new Date(data[i]['createdAt'])).Format('yyyy-MM-dd')+'</span>'+
+               '</div>'+
+               '<div class="body">'+
+                  data[i]['content']+
+                '</div>'+
+                '<div class="footer">'+
+                  '<i class="iconfont icon-zanyang"></i>'+data[i]['menuName']+
+                  '<span class="delete-btn js-delete-comment" data-id="'+data[i]['id']+'"><i class="iconfont icon-shanchu"></i></span>'+
+                '</div>'+
+              '</li>';
+      }
+      ele.html('').append(tpl);
+
+    }
     //根据uId显示用户所有收货信息
     Controller.Setting.prototype.showAddress = function(ele){
       var UserController = new Controller.User();
@@ -1355,6 +1476,24 @@ Model.Cart.prototype.statistics = function(){
         Helper.back();
 
     }
+    //订单评论
+    Controller.OrderComment = function(){
+
+    }
+    //删除信息
+    Controller.OrderComment.prototype.deleteInfo = function(data){
+        var OrderCommentModel = new Model.OrderComment();
+        var status = OrderCommentModel.deleteInfoById(data.id);
+        if(status){
+             Helper.success("删除成功");
+             api.sendEvent({
+                 name: 'refreshEvent'
+             });
+             return false;
+        }
+        return Helper.error("删除失败");
+    }
+    //
     //订单
     Controller.Order = function(){
 
@@ -1375,6 +1514,12 @@ Model.Cart.prototype.statistics = function(){
 
          data.orderCount = orderDetailData.count;
 
+         //通过shopId获取店铺信息
+         var ShopModel = new Model.Shop();
+         var shopData = ShopModel.getInfoByShopId(data.shopId);
+
+         data.shopName = shopData.name;
+
          //获取用户信息
          var UserModel = new Model.User();
          var userData = UserModel.get(data.userId);
@@ -1386,6 +1531,7 @@ Model.Cart.prototype.statistics = function(){
           var status = OrderComment.create(data);
           if(status){
              Helper.success("评论成功!");
+             Helper.back();
               return true;
           }
           Helper.error("评论失败!");
@@ -1432,12 +1578,16 @@ Model.Cart.prototype.statistics = function(){
         var order = window.localStorage.getItem('order');
              order = JSON.parse(order);
         var id  = order.currentId;
+
         //获取订单数据
         var OrderModel = new Model.Order();
         var orderData = OrderModel.baseInfo(id);
+
         //获取订单详情数据
         var OrderDetailModel = new Model.OrderDetail();
         var orderDetailData = OrderDetailModel.get(id);
+
+
 
         var orderDetailEle = $(ele).find('.order-list');
         orderDetailEle.html('');
@@ -1451,7 +1601,7 @@ Model.Cart.prototype.statistics = function(){
                      '<span class="comment-btn js-open-order-comment" data-id="'+orderDetailData[i]['id']+'" data-menu-id="'+orderDetailData[i]['menuId']+'">评论</span>'+
                 '</li>';
         }
-         orderDetailEle.append(tpl);
+         orderDetailEle.html('').append(tpl);
 
 
         //设置指定的值
@@ -1959,6 +2109,14 @@ Model.Cart.prototype.statistics = function(){
            })
       },
       setting:function(){
+        //删除评论
+        $('body').delegate('.js-delete-comment','click',function(event){
+                event.preventDefault();
+              var data = {};
+                  data.id = $(this).data('id');
+            var OrderCommentController = new Controller.OrderComment();
+                OrderCommentController.deleteInfo(data);
+        });
           //设置密码
           $('body').delegate('.js-set-password','click',function(event){
                   event.preventDefault();
@@ -2114,6 +2272,17 @@ Model.Cart.prototype.statistics = function(){
              Helper.back();
 
          });
+          //返回按钮
+         $('.js-back-refresh').bind('click',function(event){
+              event.preventDefault();
+              api.closeWin();
+              //刷新
+             api.sendEvent({
+                 name: 'refreshEvent'
+             });
+
+         });
+         
         //更新按钮
         $('.js-update').bind('click',function(event){
 
@@ -2262,7 +2431,7 @@ Model.Cart.prototype.statistics = function(){
 
                 //发送登录信息
                  api.sendEvent({
-                     name: 'logout'
+                     name: 'refreshEvent'
                  });
 
         });
@@ -2319,9 +2488,9 @@ Model.Cart.prototype.statistics = function(){
             var address = new Controller.Address();
                 address.add(data);
 
-                //发消息
+                //刷新
                 api.sendEvent({
-                    name: 'addressSuccess'
+                    name: 'refreshEvent'
                 });
           });
 
@@ -2369,6 +2538,16 @@ Model.Cart.prototype.statistics = function(){
            
           }
           break;
+          case 'setting-comment-content':{
+            //显示所有评论
+            var commentEle = $('#order-comment');
+            if(commentEle){
+                var SettingController = new Controller.Setting();
+                    SettingController.showComment(commentEle);
+            }
+           
+          }
+          break;
           case 'order-confirm-content': {
             //body绑定滚动条在顶部的事件
             $(window).scroll(function(){
@@ -2409,7 +2588,7 @@ Model.Cart.prototype.statistics = function(){
                if(orderEle){
                   //订单Controller
                   var OrderController = new Controller.Order();
-                  //显示订单列表
+                  //显示订单详情列表
                    OrderController.showDetail(orderEle);
                }
 
@@ -2518,14 +2697,6 @@ Model.Cart.prototype.statistics = function(){
         }
     };
     APP.init = function(){
-      //相应返回事件
-      api.addEventListener({
-          name: 'backEvent'
-      }, function(ret){
-          //判断当前是哪一页
-          var currentPage = $('body').data('page');
-          APP.switchBtn(currentPage);
-      });
         // api.setRefreshHeaderInfo({
         //                      visible: true,
         //                      bgColor: 'transparent',
@@ -2543,21 +2714,15 @@ Model.Cart.prototype.statistics = function(){
         //              APP.switchBtn(currentPage);
         //            setTimeout("api.refreshHeaderLoadDone()",1000)
         //     });
-      api.addEventListener({
-          name: 'logout'
-      }, function(ret){
-
-      });
-        //新增地址成功后，刷新地址显示。
+        //刷新
         api.addEventListener({
-            name: 'addressSuccess'
+            name: 'refreshEvent'
         }, function(ret){
-              //获取地址显示element
-                   var addressEle = $('.m-harvest-address');
-                 //显示默认地址
-                 var addressController = new Controller.Address();
-                     addressController.showDefaultAddress(addressEle);
+              //判断当前是哪一页
+             var currentPage = $('body').data('page');
+             APP.switchBtn(currentPage);
         });
+
         //初始化config
         Config.init();
           
