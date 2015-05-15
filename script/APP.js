@@ -479,6 +479,7 @@
 
          //打开子窗口
          api.openFrame(frame);
+
     };
     //
     Helper.openWin = function(name,data){
@@ -495,6 +496,7 @@
              }
           }
           win.name = name;
+          win.pageParam = {'name':api.winName};
           win.url = Config.ROOT+'/'+Config.HTML[name].url;
          
          //打开主窗口
@@ -514,6 +516,12 @@
     };
     Helper.back = function(){
          api.closeWin();
+         var pageParam = api.pageParam;
+         //页面刷新
+         api.execScript({
+             name:  pageParam.name,
+             script: 'APP.switchBtn();'
+         });
     }
     //显示购物车状态
     Helper.showCartStatus = function(ele){
@@ -524,7 +532,7 @@
         ele.find('.total-count').first().html(totalCount);
     };
 
-
+   
     /*========================================
     *Model
     *=========================================
@@ -1671,24 +1679,31 @@ Model.Cart.prototype.statistics = function(){
     }
     //用户注册
     Controller.User.prototype.register = function(data){
-        // if(data.email == ''){
-        //    return "邮箱不能为空";
-        // }
-        // if(data.password == ''){
-        //     return "密码不能为空";
-        // }
-        // if(data.username == ''){
-        //     return "用户名不能为空";
-        // }
+        if(data.email == ''){
+          Helper.error('邮箱不能为空');
+          return;
+        }else if(data.password == ''){
+          Helper.error('密码不能为空');
+          return ;
+        }else if(data.username == ''){
+          Helper.error('用户名不能为空');
+            return ;
+        }else if(data.password != data.repassword){
+            Helper.error('两次输入密码不正确');
+            return ;
+        }
         delete data.repassword;
 
         var UserModel = new Model.User();
         var status = UserModel.add(data);
 
         if(status){
-           alert("注册成功");
+           Helper.success("注册成功");
+           Helper.back();
+           return ;
         }
-        alert("注册失败");
+        Helper.error('注册失败');
+
     }
     //显示用户状态
     Controller.User.prototype.showStatus = function(ele){
@@ -2097,7 +2112,7 @@ Model.Cart.prototype.statistics = function(){
           //返回按钮
          $('.js-back').bind('click',function(event){
               event.preventDefault();
-              api.closeWin();
+             Helper.back();
 
          });
         //更新按钮
@@ -2344,11 +2359,11 @@ Model.Cart.prototype.statistics = function(){
     *应用程序的相关配置
     *=========================================
     */
-    var APP = function(){
-        this.init();
+    APP = {};
+    APP.switchBtn = function(){
+        alert($('body').data('page'));
     }
-    APP.prototype.init = function(){
-
+    APP.init = function(){
       api.addEventListener({
           name: 'logout'
       }, function(ret){
@@ -2373,7 +2388,6 @@ Model.Cart.prototype.statistics = function(){
           if($('body').data('frame')){
             Helper.openFrame($('body').data('frame'));
           }
-         
         //判断当前是哪一页
         var currentPage = $('body').data('page');
         switch(currentPage){
@@ -2392,7 +2406,7 @@ Model.Cart.prototype.statistics = function(){
             $(window).scroll(function(){
                 var y =  $(window).scrollTop();
                 if(y == 0){
-                   var app = new APP(); 
+                  APP.init();
                 }
             });
 
@@ -2537,8 +2551,7 @@ Model.Cart.prototype.statistics = function(){
     };
 
       
-          //应用程序初始化
-          var app = new APP();
+        APP.init();
 
 
          
