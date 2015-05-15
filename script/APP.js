@@ -516,12 +516,11 @@
     };
     Helper.back = function(){
          api.closeWin();
-         var pageParam = api.pageParam;
-         //页面刷新
-         api.execScript({
-             name:  pageParam.name,
-             script: 'APP.switchBtn();'
+         //监听返回事件
+         api.sendEvent({
+             name: 'backEvent'
          });
+
     }
     //显示购物车状态
     Helper.showCartStatus = function(ele){
@@ -1328,18 +1327,18 @@ Model.Cart.prototype.statistics = function(){
          //-用户uid
         var uId = window.localStorage.getItem('uId');
         if(!uId){
-            alert("您还没登录，请登录");
+            Helper.error("您还没登录，请登录");
             return false;
         }
         //验证数据的正确性
         if(data.password == '' ){
-            alert("输入的旧密码不能为空");
+            Helper.error("输入的旧密码不能为空");
             return ;
         }else if(data.newPassword == '' || data.confirmPassword == ''){
-              alert("新密码不能为空");
+              Helper.error("新密码不能为空");
               return ;
         }else if(data.newPassword != data.confirmPassword){
-            alert("两次输入的密码不正确");
+            Helper.error("两次输入的密码不正确");
             return ;
         }
         //#####验证旧密码是否正确
@@ -1348,10 +1347,10 @@ Model.Cart.prototype.statistics = function(){
         var status = UserModel.checkLoginPassword(uId,data.password);
         //_验证输入的旧密码是否正确
         if(!status){
-            alert("输入的旧密码不对");
+            Helper.error("输入的旧密码不对");
             return ;
         }
-        alert("密码修改成功！");
+         Helper.success("密码修改成功！");
         //返回
         Helper.back();
 
@@ -1386,10 +1385,10 @@ Model.Cart.prototype.statistics = function(){
           var OrderComment = new Model.OrderComment();
           var status = OrderComment.create(data);
           if(status){
-              alert("评论成功!");
+             Helper.success("评论成功!");
               return true;
           }
-          alert("评论失败!");
+          Helper.error("评论失败!");
           return false;
     }
     //打开订单评论
@@ -1472,14 +1471,14 @@ Model.Cart.prototype.statistics = function(){
        //判断用户是否登录
         var uId = window.localStorage.getItem('uId');
         if(!uId){
-            alert('你还没有登录，马上登录');
+             Helper.error('你还没有登录，马上登录');
             return false;
         }
        //获取购物车里的信息
         var CartModel = new Model.Cart();
         var cartData = CartModel.get();
         if(cartData.length == 0){
-            alert('购物车里还没有数据，马上去体验购物');
+             Helper.error('购物车里还没有数据，马上去体验购物');
             return false;
         }
        
@@ -1509,7 +1508,7 @@ Model.Cart.prototype.statistics = function(){
           //清空购物车
          CartModel.clear();
 
-        alert("您的订单已经收到，我们马上通知商家，请及时查看订单状态");
+         Helper.success("您的订单已经收到，我们马上通知商家，请及时查看订单状态");
 
 
         api.sendEvent({
@@ -1581,7 +1580,7 @@ Model.Cart.prototype.statistics = function(){
     Controller.Address.prototype.getDefault = function(){
         var uId = window.localStorage.getItem('uId');
         if(!uId){
-          alert("您还没有登录，请登录！");
+          Helper.error("您还没有登录，请登录！");
           return [];
         }
         var defaultAddress = null;
@@ -1619,17 +1618,17 @@ Model.Cart.prototype.statistics = function(){
      Controller.Address.prototype.add = function(data){
           var uId = window.localStorage.getItem('uId');
           if(!uId){
-              alert("您还没登录，请登录");
+              Helper.error("您还没登录，请登录");
               return false;
           }
               data.userId = uId;
           var addressModel = new Model.Address();
           var status = addressModel.add(data);
           if(status){
-              alert("添加成功");
+              Helper.success("添加成功");
               Helper.back();
           }else{
-             alert("添加失败");
+             Helper.error("添加失败");
           }
 
      }
@@ -1643,7 +1642,7 @@ Model.Cart.prototype.statistics = function(){
         //重新设定uId的值
         window.localStorage.setItem('uId','');
 
-        alert('您已成功退出登录');
+        Helper.success('您已成功退出登录');
     }
     //判断用户已经登录
     Controller.User.prototype.isLogin = function(){
@@ -1657,24 +1656,24 @@ Model.Cart.prototype.statistics = function(){
     //用户登录
     Controller.User.prototype.login = function(data){
           if(data.password == ''){
-              alert("密码不能为空");
+              Helper.error("密码不能为空");
               return false;
           }
           if(data.username == ''){
-              alert("用户名不能为空");
+              Helper.error("用户名不能为空");
               return false;
           }
           var UserModel = new Model.User();
           var uId = UserModel.getId(data);
 
           if(uId){
-              alert("登录成功");
+              Helper.success("登录成功");
               //在本地保存uId
               window.localStorage.setItem('uId',uId);
               //打开之前的窗口
               Helper.back();
           }else{
-              alert("登录失败");
+              Helper.error("登录失败");
           }
     }
     //用户注册
@@ -1943,9 +1942,9 @@ Model.Cart.prototype.statistics = function(){
                      if(ret){
                        var result = ret.result;
                        if(result.update){
-                           alert("有更新版本");
+                           Helper.success("有更新版本");
                        }else{
-                           alert("没有更新版本");
+                           Helper.error("没有更新版本");
                        }
                        
                      }
@@ -1956,7 +1955,7 @@ Model.Cart.prototype.statistics = function(){
            api.addEventListener({
                name:'offline'
            },function(ret,err){
-              alert("您的网络已经断开，请检查网络再使用");
+             Helper.error("您的网络已经断开，请检查网络再使用");
            })
       },
       setting:function(){
@@ -2215,7 +2214,7 @@ Model.Cart.prototype.statistics = function(){
            var CartModel = new Model.Cart();
            var data = CartModel.get();
            if(data.length == 0){
-              alert('亲，您的购物车空空如也，马上购物吧!');
+              Helper.error('亲，您的购物车空空如也，马上购物吧!');
               return false;
            }
            Helper.openWin('cart');
@@ -2228,7 +2227,7 @@ Model.Cart.prototype.statistics = function(){
                  var CartModel = new Model.Cart();
                  var data = CartModel.get();
                  if(data.length == 0){
-                    alert('亲，您的购物车空空如也，马上购物吧!');
+                   Helper.error('亲，您的购物车空空如也，马上购物吧!');
                     return false;
                  }
                 Helper.openWin('order-confirm');
@@ -2347,8 +2346,6 @@ Model.Cart.prototype.statistics = function(){
             var  OrderController = new Controller.Order();
                 OrderController.comment(data);
 
-                //返回
-                Helper.back();
           });
 
 
@@ -2360,37 +2357,8 @@ Model.Cart.prototype.statistics = function(){
     *=========================================
     */
     APP = {};
-    APP.switchBtn = function(){
-        alert($('body').data('page'));
-    }
-    APP.init = function(){
-      api.addEventListener({
-          name: 'logout'
-      }, function(ret){
-
-      });
-
-      api.addEventListener({
-          name: 'addressSuccess'
-      }, function(ret){
-            //获取地址显示element
-                 var addressEle = $('.m-harvest-address');
-               //显示默认地址
-               var addressController = new Controller.Address();
-                   addressController.showDefaultAddress(addressEle);
-      });
-        //初始化config
-        Config.init();
-          
-          //绑定事件到元素
-          Event.init();
-          //打开当前页的默认frame
-          if($('body').data('frame')){
-            Helper.openFrame($('body').data('frame'));
-          }
-        //判断当前是哪一页
-        var currentPage = $('body').data('page');
-        switch(currentPage){
+    APP.switchBtn = function(name){
+        switch(name){
           case 'setting-address-content':{
             //显示用户所有收货人地址信息
             var addressListEle = $('#address-list');
@@ -2549,9 +2517,63 @@ Model.Cart.prototype.statistics = function(){
           break;
         }
     };
+    APP.init = function(){
+      //相应返回事件
+      api.addEventListener({
+          name: 'backEvent'
+      }, function(ret){
+          //判断当前是哪一页
+          var currentPage = $('body').data('page');
+          APP.switchBtn(currentPage);
+      });
+        // api.setRefreshHeaderInfo({
+        //                      visible: true,
+        //                      bgColor: 'transparent',
+        //                      textColor: '#000',
+        //                      textDown: '下拉刷新...',
+        //                      textUp: '松开刷新...',
+        //                      showTime: false
+        //              }, function(ret, err){
+        //                      api.toast({
+        //                              msg: '刷新',
+        //                              duration:1000,
+        //                              location: 'bottom'
+        //                      });
+        //             var currentPage = $('body').data('page');
+        //              APP.switchBtn(currentPage);
+        //            setTimeout("api.refreshHeaderLoadDone()",1000)
+        //     });
+      api.addEventListener({
+          name: 'logout'
+      }, function(ret){
 
-      
-        APP.init();
+      });
+        //新增地址成功后，刷新地址显示。
+        api.addEventListener({
+            name: 'addressSuccess'
+        }, function(ret){
+              //获取地址显示element
+                   var addressEle = $('.m-harvest-address');
+                 //显示默认地址
+                 var addressController = new Controller.Address();
+                     addressController.showDefaultAddress(addressEle);
+        });
+        //初始化config
+        Config.init();
+          
+          //绑定事件到元素
+          Event.init();
+          //打开当前页的默认frame
+          if($('body').data('frame')){
+            Helper.openFrame($('body').data('frame'));
+          }
+        //判断当前是哪一页
+        var currentPage = $('body').data('page');
+        APP.switchBtn(currentPage);
+    };
+
+      //应用程序初始化
+      APP.init();
 
 
          
