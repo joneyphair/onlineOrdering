@@ -14,28 +14,32 @@ body{
 	background-color:transparent;
 }
 .m-order .item .header {
-	height:50px;
+	height:40px;
 	font-size:24px;
-	line-height: 3;
+	line-height:2.5;
+	display: block;
 }
 .m-order .item .content {
-	height:200px;
 	font-size:18px;
-	line-height:1.7;
-	padding:10px 0;
+	line-height:1.3;
 	overflow: hidden;
 }
 .m-order  .item .footer{
-	height:50px;
-	padding:6px 0;	
+	overflow: hidden;
+	height:auto;	
+}
+.m-order  .item  .order-id {
+	display:block;
+	 height:40px;
+	 line-height: 40px;
 }
 .m-order  .item .footer .btn-comment {
 	display: block;
 	color:red;
 	text-align: center;
-	line-height: 30px;
-	height:30px;
-	font-size:18px;
+	line-height: 40px;
+	height:40px;
+	font-size:15px;
 	text-align: left;
 	text-decoration: none;
 }
