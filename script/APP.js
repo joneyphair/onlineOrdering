@@ -1195,6 +1195,8 @@ Model.Cart.prototype.statistics = function(){
             return ;
         }
         alert("密码修改成功！");
+        //返回
+        Helper.back();
 
     }
     //订单
