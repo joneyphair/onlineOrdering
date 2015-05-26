@@ -2,7 +2,7 @@
 
 dir
 0
-svn://svn2.apicloud.com/A6972747662689/diancan/css/order/comment
+svn://svn2.apicloud.com/A6972747662689/diancan/css/order/confirm
 svn://svn2.apicloud.com/A6972747662689
 add
 
@@ -34,13 +34,6 @@ file
 add
 
 layout.css
-file
-
-
-
-add
-
-index.css
 file
 
 

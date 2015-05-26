@@ -26,25 +26,18 @@ svn://svn2.apicloud.com/A6972747662689
 incomplete
 0e1a2743-8d03-4e5a-a60c-7e26af42b145
 
-~WRL2058.tmp
-file
-0
-
-
-add
-
-
-
-
-
-has-props
-has-prop-mods
-
 app
 dir
 
 image
 dir
+
+dianca.doc
+file
+0
+
+
+add
 
 .project
 file
@@ -94,20 +87,6 @@ dir
 
 wgt
 dir
-
-diancan.doc
-file
-0
-
-
-add
-
-
-
-
-
-has-props
-has-prop-mods
 
 config.xml
 file
