@@ -13,7 +13,7 @@
 	overflow: hidden;
 	background-color:#fff;
 	position: relative;
-	height:90px;
+	
 }
 .g-main .m-address .content li label {
 	height:30px;
@@ -24,7 +24,6 @@
 }
 .g-main .m-address .content li p {
 	margin:0;
-	height:50px;
 	line-height:2;
 	padding:0 10px;
 	vertical-align: middle;
@@ -34,7 +33,7 @@
 	 padding:0 5px;
 	 display:inline-block;
 }
-.g-main .m-address .content li .btn-group {
+.g-main .m-address .content li .sidebar {
 	  position: absolute;
 	  top:0;
 	  right:0;
@@ -46,3 +45,13 @@
 	  text-align: center;
 	  border-left:1px solid #f6f6f7;
 }
+
+.g-main .m-address .content li .footer {
+	height:30px;
+	padding:0 20px;
+}
+.g-main .m-address .content li .footer span {
+	 width:60px;
+	 color:red;
+}
+
