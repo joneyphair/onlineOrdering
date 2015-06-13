@@ -6,6 +6,7 @@ script/APP.js文件中`
 ### 图片展示
 
 ####  店铺列表
+
 ![qq 20150613134408](https://cloud.githubusercontent.com/assets/8407484/8143341/95802e04-11d8-11e5-9ebf-9397a4b362ca.png)
 
 #### 店铺菜单
